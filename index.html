@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTMAHER Vergi Hesaplama Modülü</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>OTMAHER Vergi Hesaplama Modülü</h1>
+    <p>Ciro, gider ve manuel giderleri tek ekranda birleştirerek vergi hesaplama.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Veri Girişi</h2>
+      <div class="grid two">
+        <form id="saleForm" class="panel-form">
+          <h3>Manuel Ciro Ekle</h3>
+          <label>Tarih <input type="date" name="date" required></label>
+          <label>Platform
+            <select name="platform" required>
+              <option value="Adisyo">Adisyo</option>
+              <option value="Trendyol Yemek">Trendyol Yemek</option>
+              <option value="Getir Yemek">Getir Yemek</option>
+              <option value="Migros Yemek">Migros Yemek</option>
+              <option value="Yemeksepeti">Yemeksepeti</option>
+            </select>
+          </label>
+          <label>KDV Dahil Satış (₺)<input type="number" min="0" step="0.01" name="gross" required></label>
+          <label>Sipariş Adedi <input type="number" min="0" step="1" name="orders" value="0"></label>
+          <button type="submit">Satış Ekle</button>
+        </form>
+
+        <form id="expenseForm" class="panel-form">
+          <h3>Gider Faturası Ekle</h3>
+          <label>Tarih <input type="date" name="date" required></label>
+          <label>Firma <input type="text" name="vendor" required></label>
+          <label>Kategori
+            <select name="category" required>
+              <option>Et ürünleri</option><option>Paketleme</option><option>Temizlik</option>
+              <option>Elektrik</option><option>İnternet</option><option>Muhasebe</option>
+              <option>Kira</option><option>Yakıt</option><option>Diğer</option>
+            </select>
+          </label>
+          <label>KDV Oranı
+            <select name="vatRate" required>
+              <option value="0.1">%10</option>
+              <option value="0.2">%20</option>
+            </select>
+          </label>
+          <label>KDV Dahil Tutar (₺)<input type="number" min="0" step="0.01" name="gross" required></label>
+          <button type="submit">Gider Ekle</button>
+        </form>
+      </div>
+
+      <form id="manualExpenseForm" class="panel-form top-gap">
+        <h3>Manuel Gider Ekle</h3>
+        <div class="grid three">
+          <label>Tarih <input type="date" name="date" required></label>
+          <label>Kategori
+            <select name="category" required>
+              <option>Kira</option><option>Elektrik</option><option>Su</option><option>İnternet</option>
+              <option>Muhasebe</option><option>SGK</option><option>Bağkur</option><option>Personel</option><option>Diğer</option>
+            </select>
+          </label>
+          <label>Tutar (₺)<input type="number" min="0" step="0.01" name="amount" required></label>
+        </div>
+        <button type="submit">Manuel Gider Ekle</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Dashboard</h2>
+      <div id="dashboard" class="grid three metrics"></div>
+    </section>
+
+    <section class="card">
+      <h2>Günlük Satış Paneli</h2>
+      <table id="salesTable"><thead><tr><th>Tarih</th><th>Platform</th><th>Satış</th><th>Sipariş</th><th>Net Ciro (KDV Hariç)</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="card">
+      <h2>Gider Paneli</h2>
+      <table id="expensesTable"><thead><tr><th>Tarih</th><th>Firma/Kategori</th><th>Kategori</th><th>Tutar (KDV Dahil)</th><th>KDV</th><th>KDV Hariç</th></tr></thead><tbody></tbody></table>
+    </section>
+
+    <section class="card">
+      <h2>Vergi Paneli (3 Aylık)</h2>
+      <table id="taxTable"><thead><tr><th>Dönem</th><th>Çıkan KDV</th><th>Geçici Vergi</th><th>Net Kâr</th></tr></thead><tbody></tbody></table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
